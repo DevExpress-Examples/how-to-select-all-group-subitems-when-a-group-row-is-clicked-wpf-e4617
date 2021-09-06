@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Q479873", "GridGroupSelect\Q479873.csproj", "{747F3692-DD16-4EC3-9783-5F3BC01D3399}"
+# Visual Studio 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Q479873", "GridGroupSelect\Q479873.Net5.csproj", "{747F3692-DD16-4EC3-9783-5F3BC01D3399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
