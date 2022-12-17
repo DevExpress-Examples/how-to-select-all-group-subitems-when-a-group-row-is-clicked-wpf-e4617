@@ -1,12 +1,13 @@
-﻿Imports System.Windows
+Imports System.Windows
 
 Namespace dxSample
-	Partial Public Class MainWindow
-		Inherits Window
 
-		Public Sub New()
-			InitializeComponent()
-			DataContext = SampleDataRow.CreateRows()
-		End Sub
-	End Class
+    Public Partial Class MainWindow
+        Inherits Window
+
+        Public Sub New()
+            Me.InitializeComponent()
+            DataContext = SampleDataRow.CreateRows()
+        End Sub
+    End Class
 End Namespace
