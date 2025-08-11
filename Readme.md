@@ -60,10 +60,10 @@ In the `MainWindow` constructor, the `DataContext` is set to the collection retu
 
 ## Documentation
 
-* [Data Grid](https://docs.devexpress.com/WPF/6084/controls-and-libraries/data-grid)
-* [GridControl](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl)
-* [GridColumn](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.BandBase.GridColumn)
 * [TableView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView)
+* [`GroupRowExpanding`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding)
+* [`BeginSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection)
+* [`EndSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection)
 
 ## More Examples
 
