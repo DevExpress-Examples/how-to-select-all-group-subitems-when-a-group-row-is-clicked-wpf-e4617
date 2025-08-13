@@ -21,35 +21,27 @@ Use this technique when you need to:
 
 ### Attached Behavior
 
-Specify the `GroupChildSelector.Mode` attached property for the [`TableView`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView) and set the property to one of the following modes:
-
-* `None` — no selection.
-* `Child` — select direct children.
-* `Hierarchical` — select all descendants in expanded subgroups.
+Set the `GroupChildSelector.Mode` attached property to `Hierarchical` to select all descendants in expanded subgroups.
 
 The child-row selection logic works with two events: 
 
-* `PreviewMouseLeftButtonUp` - fires when a user clicks a group row. 
+* [`PreviewMouseLeftButtonUp`](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.previewmouseleftbuttonup) - fires when a user clicks a group row. 
 * [`GroupRowExpanding`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding) - fires when a user expands a group. 
 
 When either event occurs, the child-row selection logic selects all child rows in that group and calls [`BeginSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection) and [`EndSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection) methods to apply the changes in one step.
 
 ```xaml
 <dxg:GridControl>
-  <dxg:GridControl.View>
-    <dxg:TableView
-      local:GroupChildSelector.Mode="Hierarchical" />
-  </dxg:GridControl.View>
+    <dxg:GridControl.View>
+        <dxg:TableView
+        local:GroupChildSelector.Mode="Hierarchical" />
+    </dxg:GridControl.View>
 </dxg:GridControl>
 ```
 
 ### Selection Logic
 
 The `GroupChildSelector` calls the `SelectChild(grid, groupRowHandle)` method to select all child rows in a group. In `Hierarchical` mode, if a child row is an expanded group, the method calls itself to select that group’s child rows. The code calls the `BeginSelection` method before changes and the `EndSelection` method after changes to update the selection in a single step.
-
-### Data Setup
-
-In the `MainWindow` constructor, the `DataContext` is set to the collection returned by the `SampleDataRow.CreateRows()` method. This method creates 100 data rows with `Id`, `Group`, `Name`, and `HasFlag` fields.
 
 ## Files to Review
 
@@ -61,9 +53,9 @@ In the `MainWindow` constructor, the `DataContext` is set to the collection retu
 ## Documentation
 
 * [TableView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView)
-* [`GroupRowExpanding`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding)
-* [`BeginSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection)
-* [`EndSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection)
+* [GroupRowExpanding](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding)
+* [BeginSelection](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection)
+* [EndSelection](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection)
 
 ## More Examples
 
