@@ -7,7 +7,7 @@
 
 # WPF Data Grid – Select Child Rows When a User Clicks or Expands a Group Row
 
-This example selects all child rows in a group when a user expands a group row or clicks a group row.
+This example selects all child rows in a group when a user expands or clicks a group row.
 
 ![Select Child Rows When a User Clicks or Expands a Group Row](./Images/expanded-rows.jpg)
 
