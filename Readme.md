@@ -4,21 +4,65 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [GroupChildSelector.cs](./CS/GridGroupSelect/GroupChildSelector.cs) (VB: [GroupChildSelector.vb](./VB/GridGroupSelect/GroupChildSelector.vb))
+# WPF Data Grid – Select Child Rows When a User Clicks or Expands a Group Row
+
+This example selects all child rows in a group when a user expands or clicks a group row.
+
+![Select Child Rows When a User Clicks or Expands a Group Row](./Images/expanded-rows.jpg)
+
+Use this technique when you need to:
+
+* Select all children after a group expands.
+* Select children on a group-row click.
+* Apply recursive selection in nested groups.
+
+## Implementation Details
+
+### Attached Behavior
+
+Set the `GroupChildSelector.Mode` attached property to `Hierarchical` to select all descendants in expanded subgroups.
+
+The child-row selection logic works with two events: 
+
+* [`PreviewMouseLeftButtonUp`](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.previewmouseleftbuttonup) - fires when a user clicks a group row. 
+* [`GroupRowExpanding`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding) - fires when a user expands a group. 
+
+When either event occurs, the child-row selection logic selects all child rows in that group and calls [`BeginSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection) and [`EndSelection`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection) methods to apply the changes in one step.
+
+```xaml
+<dxg:GridControl>
+    <dxg:GridControl.View>
+        <dxg:TableView
+        local:GroupChildSelector.Mode="Hierarchical" />
+    </dxg:GridControl.View>
+</dxg:GridControl>
+```
+
+### Selection Logic
+
+The `GroupChildSelector` calls the `SelectChild(grid, groupRowHandle)` method to select all child rows in a group. In `Hierarchical` mode, if a child row is an expanded group, the method calls itself to select that group’s child rows. The code calls the `BeginSelection` method before changes and the `EndSelection` method after changes to update the selection in a single step.
+
+## Files to Review
+
 * [MainWindow.xaml](./CS/GridGroupSelect/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/GridGroupSelect/MainWindow.xaml))
 * [MainWindow.xaml.cs](./CS/GridGroupSelect/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/GridGroupSelect/MainWindow.xaml.vb))
+* [GroupChildSelector.cs](./CS/GridGroupSelect/GroupChildSelector.cs) (VB: [GroupChildSelector.vb](./VB/GridGroupSelect/GroupChildSelector.vb))
 * [SampleDataRow.cs](./CS/GridGroupSelect/SampleDataRow.cs) (VB: [SampleDataRow.vb](./VB/GridGroupSelect/SampleDataRow.vb))
-<!-- default file list end -->
-# WPF Grid - Select child rows when a user clicks or expands a group row
 
+## Documentation
 
-<p>This example demonstrates how to select all child rows in a group when a group row is expanded or clicked.</p>
+* [TableView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView)
+* [GroupRowExpanding](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.GroupRowExpanding)
+* [BeginSelection](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginSelection)
+* [EndSelection](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndSelection)
 
-<br/>
+## More Examples
 
+* [WPF Data Grid - Specify Custom Content for Headers Displayed in the Column Chooser](https://github.com/DevExpress-Examples/wpf-data-grid-custom-content-for-column-chooser-headers)
+* [WPF Data Grid - Bind to Dynamic Data](https://github.com/DevExpress-Examples/wpf-bind-gridcontrol-to-dynamic-data)
+* [Implement CRUD Operations in the WPF Data Grid](https://github.com/DevExpress-Examples/wpf-data-grid-implement-crud-operations)
+* [WPF Grid - Resize Rows Using a Splitter](https://github.com/sergepilipchuk/wpf-grid-resize-rows-using-splitter)
 
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
